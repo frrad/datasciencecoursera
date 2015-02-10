@@ -29,3 +29,15 @@ data = read.csv("hw1_data.csv")
 
 # Question 11
 names(data)
+
+# Question 12
+head(data, n = 2)
+
+# Question 13
+nrow(data)
+
+# Question 14
+tail(data, n = 2)
+
+# Question 15
+data[47, "Ozone"]
