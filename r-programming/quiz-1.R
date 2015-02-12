@@ -50,12 +50,12 @@ ozonedata <- data[good, ]
 nrow(data) - nrow(ozonedata)
 
 print("Question 17")
-colMeans(ozonedata)["Ozone"]
+colMeans(ozonedata["Ozone"])
 
 print("Question 18")
 good <- data["Ozone"] > 31 & data["Temp"] > 90 
 range = data[good, ]
-colMeans(range[!is.na(range["Solar.R"]), ] )["Solar.R"]
+colMeans(range[!is.na(range["Solar.R"]), ]["Solar.R"])
 
 print("Question 19")
 good <- data["Month"] == 6 & ! is.na( data["Temp"])
