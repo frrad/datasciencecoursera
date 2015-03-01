@@ -7,8 +7,8 @@ best <- function(state, outcome) {
 
     idString = switch(outcome,
         "heart attack" = 11,
-        "heart failure" = 2,
-        "pneumonia" = 3,
+        "heart failure" = 17,
+        "pneumonia" = 23,
         "failed"
                       )
 
@@ -20,6 +20,8 @@ best <- function(state, outcome) {
     
     data <- read.csv("outcome-of-care-measures.csv", colClasses = "character")
 
+
+
     stateData <- data[data["State"] == state, ] 
 
     if (nrow(stateData) == 0){
@@ -28,13 +30,23 @@ best <- function(state, outcome) {
 
 
     relevantData <- stateData[c(idString, 2)]
-    relevantData <- relevantData[ !is.na(as.numeric(relevantData[ , 1 ] )) , ]
 
-    relevantData
+	# numeric
+    relevantData[, 1] <- as.numeric(relevantData[, 1])
 
+	relevantData <- relevantData[ 	!is.na(relevantData[, 1]) , ]
+
+	minimum <- min(relevantData[, 1] )
+
+	relevantData <- relevantData[ 	minimum == relevantData[, 1]   , ]
+	min(relevantData[, 2])
 
 }
 
 
-
-best("AK", "heart attack")
+# best("TX", "heart attack")
+# best("TX", "heart failure")
+# best("MD", "heart attack")
+# best("MD", "pneumonia")
+# best("NY", "hert attack")
+# best("BB", "heart attack")
